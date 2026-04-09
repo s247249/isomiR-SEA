@@ -15,7 +15,13 @@ include(FetchContent)
 # -----------------------------------------------------------------------------
 # Retrieve SeqAn3 library
 # -----------------------------------------------------------------------------
-find_package(SeqAn3 REQUIRED)
+FetchContent_Declare(
+  seqan3
+  GIT_REPOSITORY https://github.com/seqan/seqan3.git
+  GIT_TAG 3.2.0   # or a version you trust
+)
+
+FetchContent_MakeAvailable(seqan3)
 
 # -----------------------------------------------------------------------------
 # Check the presence of libseqan2-dev

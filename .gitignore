@@ -43,13 +43,7 @@
 .ipynb_checkpoints
 
 # IO_files directories
-**/io_files
-io_files_test/*
-!io_files_test/tag
-io_files_test/tag/*
-!io_files_test/tag/ENCFF005EAG.collapsed.tag
-!io_files_test/tag/ENCFF005EAG_ENCFF008VOH.collapsed.fq
-!io_files_test/tag/ENCFF005EAG_ENCFF008VOH.collapsed.tab
+io_files_test/
 
 test_*/
 
