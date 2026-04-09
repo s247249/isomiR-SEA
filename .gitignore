@@ -1,0 +1,56 @@
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# JetBrains project metadata
+**/.idea
+
+# Build directories
+**/cmake-build-debug
+**/cmake-build-release
+**/build
+
+# Ipython notebook checkpoints
+.ipynb_checkpoints
+
+# IO_files directories
+**/io_files
+io_files_test/*
+!io_files_test/tag
+io_files_test/tag/*
+!io_files_test/tag/ENCFF005EAG.collapsed.tag
+!io_files_test/tag/ENCFF005EAG_ENCFF008VOH.collapsed.fq
+!io_files_test/tag/ENCFF005EAG_ENCFF008VOH.collapsed.tab
+
+test_*/
+
+.vscode/
