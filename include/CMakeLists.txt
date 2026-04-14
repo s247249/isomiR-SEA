@@ -15,25 +15,18 @@ include(FetchContent)
 # -----------------------------------------------------------------------------
 # Retrieve SeqAn3 library
 # -----------------------------------------------------------------------------
-FetchContent_Declare(
-  seqan3
-  GIT_REPOSITORY https://github.com/seqan/seqan3.git
-  GIT_TAG 3.2.0   # or a version you trust
-)
+#FetchContent_Declare(
+#  seqan3
+#  GIT_REPOSITORY https://github.com/seqan/seqan3.git
+#  GIT_TAG 3.0.0
+#)
 
-FetchContent_MakeAvailable(seqan3)
-
-
-# -----------------------------------------------------------------------------
-# Retrieve sdsl-lite v3 library
-# -----------------------------------------------------------------------------
-FetchContent_Declare(
-  sdsl-lite
-  GIT_REPOSITORY https://github.com/simongog/sdsl-lite.git
-  GIT_TAG v3
-)
-
-FetchContent_MakeAvailable(sdsl-lite)
+#FetchContent_MakeAvailable(seqan3)
+#find_package(SeqAn3
+#             REQUIRED
+#             HINTS
+#             ${seqan3_SOURCE_DIR}/build_system)
+find_package(seqan3 REQUIRED)
 
 # -----------------------------------------------------------------------------
 # Check the presence of libseqan2-dev
@@ -67,8 +60,7 @@ target_include_directories(isomiR_SEA_isomiR_SEA
 target_link_libraries(isomiR_SEA_isomiR_SEA
                       INTERFACE
                       seqan3::seqan3
-                      ${CMAKE_THREAD_LIBS_INIT}
-                      sdsl)
+                      ${CMAKE_THREAD_LIBS_INIT})
 if(OpenMP_CXX_FOUND)
     target_link_libraries(isomiR_SEA_isomiR_SEA INTERFACE OpenMP::OpenMP_CXX)
 endif()
