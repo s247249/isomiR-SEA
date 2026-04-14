@@ -60,7 +60,7 @@ target_include_directories(isomiR_SEA_isomiR_SEA
 target_link_libraries(isomiR_SEA_isomiR_SEA
                       INTERFACE
                       seqan3::seqan3
-                      ${CMAKE_THREAD_LIBS_INIT})
+                      Threads::Threads)
 if(OpenMP_CXX_FOUND)
     target_link_libraries(isomiR_SEA_isomiR_SEA INTERFACE OpenMP::OpenMP_CXX)
 endif()
