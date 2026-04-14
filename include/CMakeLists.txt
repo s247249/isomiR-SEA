@@ -23,6 +23,18 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(seqan3)
 
+
+# -----------------------------------------------------------------------------
+# Retrieve sdsl-lite v3 library
+# -----------------------------------------------------------------------------
+FetchContent_Declare(
+  sdsl-lite
+  GIT_REPOSITORY https://github.com/simongog/sdsl-lite.git
+  GIT_TAG v3
+)
+
+FetchContent_MakeAvailable(sdsl-lite)
+
 # -----------------------------------------------------------------------------
 # Check the presence of libseqan2-dev
 # -----------------------------------------------------------------------------
