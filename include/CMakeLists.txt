@@ -25,7 +25,8 @@ include(FetchContent)
 #find_package(SeqAn3
 #             REQUIRED
 #             HINTS
-#             ${seqan3_SOURCE_DIR}/build_system)
+#             ${seqan3_SOURCE_DIR}/build_system
+set(SEQAN3_NO_SDSL 1)
 find_package(seqan3 REQUIRED)
 
 # -----------------------------------------------------------------------------
