@@ -15,7 +15,7 @@
 #ifndef ISOMIR_SEA_READ_WRITE_GFF_H
 #define ISOMIR_SEA_READ_WRITE_GFF_H
 
-#include <seqan3/io/stream/istreambuf.hpp>
+#include <seqan3/range/view/istreambuf.hpp>
 
 inline auto constexpr is_num_sign = is_char<'#'>; // because this is not present in "predicate.hpp" of seqan library
 inline auto constexpr is_new_line = is_char<'\n'>; // because this is not present in "predicate.hpp" of seqan library
