@@ -26,7 +26,6 @@ include(FetchContent)
 #             REQUIRED
 #             HINTS
 #             ${seqan3_SOURCE_DIR}/build_system
-set(SEQAN3_NO_SDSL 1)
 find_package(seqan3 REQUIRED)
 
 # -----------------------------------------------------------------------------
@@ -68,3 +67,5 @@ endif()
 add_library(isomiR_SEA::isomiR_SEA
             ALIAS
             isomiR_SEA_isomiR_SEA)
+
+install(TARGETS isomir_sea DESTINATION bin)
