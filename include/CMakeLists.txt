@@ -67,5 +67,3 @@ endif()
 add_library(isomiR_SEA::isomiR_SEA
             ALIAS
             isomiR_SEA_isomiR_SEA)
-
-install(TARGETS isomir_sea DESTINATION bin)

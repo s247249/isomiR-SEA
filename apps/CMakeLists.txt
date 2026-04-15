@@ -18,3 +18,5 @@ add_executable(isomir_sea
 target_link_libraries(isomir_sea
                       PUBLIC
                       isomiR_SEA::isomiR_SEA stdc++fs)
+
+install(TARGETS isomir_sea DESTINATION bin)
