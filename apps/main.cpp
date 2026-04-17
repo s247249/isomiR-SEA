@@ -93,7 +93,7 @@ int main(int argc, char **argv)
     // Argument Parser
     if (argc == 1)
     {
-        debug_stream << "Type " << argv[0] << " -h to get the parameters table" << "\n";
+        std::cerr << "Type " << argv[0] << " -h to get the parameters table" << "\n";
         return 1;
     }
     argument_parser parser("isomiR-SEA", argc, argv);
@@ -105,7 +105,7 @@ int main(int argc, char **argv)
     }
     catch (parser_invalid_argument const & ext)
     {
-        debug_stream << "Exception caught: " << ext.what() << "\n";
+        std::cerr << "Exception caught: " << ext.what() << "\n";
         return 1;
     }
     if(!check_parse_result(options)) {
@@ -183,7 +183,7 @@ int main(int argc, char **argv)
     if(org_ids_m.count(ALL_ORGANISM) <= 0) {
         for (t_pair_str_bool const &org_bool : org_ids_m) {
             if (ref_prxmir_db[org_bool.first].empty()) {
-                debug_stream << "User-requested organism '" << org_bool.first
+                std::cerr << "User-requested organism '" << org_bool.first
                              << "' is not present in the referenceDB, exiting...";
                 return 1;
             }
