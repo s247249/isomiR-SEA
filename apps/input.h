@@ -1059,7 +1059,7 @@ void load_reference_db(t_seed_v & seeds, t_org_prxmir_m & ref_prxmir_db, t_map_s
         //print_seeds(debug_stream, seeds);
     } else
     {
-        debug_stream << "File unformatted: must be designed a function capable to create a virtual management system for the data structure " <<  "\n"; //TODO implement this functionality
+        std::cerr << "File unformatted: must be designed a function capable to create a virtual management system for the data structure " <<  "\n"; //TODO implement this functionality
     }
 }
 

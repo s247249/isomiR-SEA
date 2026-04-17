@@ -167,7 +167,7 @@ void parse_gff_name_value(std::string & name, std::string & value, auto & it, au
 {
     char c = *it;
     if (c == ' ' || c == '=') {
-        debug_stream << "ATTENTION: The key field of an attribute is empty!" << "\n"; // TODO decide how to handle this
+        std::cerr << "ATTENTION: The key field of an attribute is empty!" << "\n"; // TODO decide how to handle this
     }
     for (; it!=end; ++it)
     {
@@ -250,7 +250,7 @@ void read_gff_record(gff_record & record, auto & it, auto & end)
     record.end_pos = static_cast<uint32_t>(std::stoul(buffer));
     // Check if end < begin
     if (record.end_pos < record.begin_pos) {
-        debug_stream << "ATTENTION: Begin position of GFF/GTF record is larger than end position!"
+        std::cerr << "ATTENTION: Begin position of GFF/GTF record is larger than end position!"
                      << "\n"; // TODO decide how to handle this
     }
     // Read column 6: score
@@ -318,7 +318,7 @@ void write_attributes(t_file & out_stream, gff_record const & record) // Works o
         }
         for(auto it = record.tag_names[i].begin(); it != record.tag_names[i].end(); ++it) {
             if (*it == '\n' || *it == '"') {
-                debug_stream << "ATTENTION: Attribute contains illegal character!\n"; // TODO decide how to handle this
+                std::cerr << "ATTENTION: Attribute contains illegal character!\n"; // TODO decide how to handle this
             }
             if((*it) == ';' || (*it) == '=')
             {
@@ -333,7 +333,7 @@ void write_attributes(t_file & out_stream, gff_record const & record) // Works o
             out_stream << "=";
             for(auto it = record.tag_values[i].begin(); it != record.tag_values[i].end(); ++it) {
                 if (*it =='\n' || *it == '"') {
-                    debug_stream << "ATTENTION: Attribute contains illegal character!\n"; // TODO decide how to handle this
+                    std::cerr << "ATTENTION: Attribute contains illegal character!\n"; // TODO decide how to handle this
                 }
             }
             out_stream << record.tag_values[i];
@@ -368,14 +368,14 @@ void write_gff_record(t_file & out_stream, gff_record const & record)
         out_stream << record.begin_pos + 1 << "\t";
     }
     else {
-        debug_stream << "ATTENTION: No start position\n"; // TODO decide how to handle this
+        std::cerr << "ATTENTION: No start position\n"; // TODO decide how to handle this
     }
     // Write column 5: end position
     if (record.end_pos != (unsigned)-1 && record.begin_pos <= record.end_pos) {
         out_stream << record.end_pos << "\t";
     }
     else {
-        debug_stream << "ATTENTION: No end position or begin position larger than end position!\n"; // TODO decide how to handle this
+        std::cerr << "ATTENTION: No end position or begin position larger than end position!\n"; // TODO decide how to handle this
     }
     // Write column 6: score
     if (record.score != record.score) {
