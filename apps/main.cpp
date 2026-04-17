@@ -17,9 +17,9 @@
 // Macro utility
 // ============================================================================
 
-#define _V(_opt, _str) {if(_opt.verbose>0) debug_stream << _str << "\n";}
-#define _VV(_opt, _str) {if(_opt.verbose>1) debug_stream << _str << "\n";}
-#define _VVV(_opt, _str) {if(_opt.verbose>2) debug_stream << _str << "\n";}
+#define _V(_opt, _str) {if(_opt.verbose>0) std::cerr << _str << "\n";}
+#define _VV(_opt, _str) {if(_opt.verbose>1) std::cerr << _str << "\n";}
+#define _VVV(_opt, _str) {if(_opt.verbose>2) std::cerr << _str << "\n";}
 
 // ----------------------------------------------------------------------------
 // Utility headers
@@ -43,7 +43,7 @@
 // SeqAn2 headers
 // ----------------------------------------------------------------------------
 
-#include <seqan2/find.h>
+#include <seqan/find.h>
 
 // ----------------------------------------------------------------------------
 // Experimental headers
