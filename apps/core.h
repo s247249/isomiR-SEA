@@ -15,7 +15,7 @@
 #ifndef ISOMIR_SEA_CORE_H
 #define ISOMIR_SEA_CORE_H
 
-typedef seqan::Prefix<seqan::IupacString>::Type t_prefix;
+typedef seqan2::Prefix<seqan2::IupacString>::Type t_prefix;
 
 enum ExtensionDirection
 {
@@ -29,10 +29,10 @@ enum ExtensionDirection
 // Function from_rna15_to_iupac()
 // ----------------------------------------------------------------------------
 
-void from_rna15_to_iupac(seqan::IupacString & seq_s2, t_seq & seq_s3)
+void from_rna15_to_iupac(seqan2::IupacString & seq_s2, t_seq & seq_s3)
 {
     for(rna15 c : seq_s3) {
-        seqan::appendValue(seq_s2, c.to_char());
+        seqan2::appendValue(seq_s2, c.to_char());
     }
 }
 
@@ -574,22 +574,22 @@ void ungapped_extension(t_mir_matched_v & mir_tag_out, t_tag_cell & tag, t_mir_c
 
 void scan_mir(t_mir_matched_v & mir_tag_out, t_tag_cell & tag, t_seed_v & seeds, t_map_str_bool const & org_ids_m, options const & options)
 {
-    seqan::IupacString tag_seqan2;
+    seqan2::IupacString tag_seqan2;
     from_rna15_to_iupac(tag_seqan2, tag.seq); // convert tag sequence (std::vector<rna15>) to IupacString in order to use seqan2 find algorithm
     t_prefix seed_zone_in_tag(tag_seqan2, options.max_start_pos_tag + options.seed_end - options.seed_start); // so we are safe that begin of the seed-tag alignment is lower than the user imposed threshold
-    seqan::Finder<t_prefix> finder_tag4seed(seed_zone_in_tag);
+    seqan2::Finder<t_prefix> finder_tag4seed(seed_zone_in_tag);
     for(unsigned j = 0; j < seeds.size(); ++j)
     {
-        seqan::goBegin(finder_tag4seed); // move Finder to the beginning of the text
-        seqan::clear(finder_tag4seed); // reset Finder
-        seqan::IupacString seed_seqan2;
+        seqan2::goBegin(finder_tag4seed); // move Finder to the beginning of the text
+        seqan2::clear(finder_tag4seed); // reset Finder
+        seqan2::IupacString seed_seqan2;
         from_rna15_to_iupac(seed_seqan2, seeds[j].seq); // convert tag sequence (std::vector<rna15>) to IupacString in order to use seqan2 find algorithm
-        seqan::Pattern<seqan::IupacString, seqan::Myers<>> pattern(seed_seqan2, -options.mismatches_in_seed);
-        while (seqan::find(finder_tag4seed, pattern, -options.mismatches_in_seed))
+        seqan2::Pattern<seqan2::IupacString, seqan2::Myers<>> pattern(seed_seqan2, -options.mismatches_in_seed);
+        while (seqan2::find(finder_tag4seed, pattern, -options.mismatches_in_seed))
         {
-            while (seqan::findBegin(finder_tag4seed, pattern, seqan::getScore(pattern)))
+            while (seqan2::findBegin(finder_tag4seed, pattern, seqan2::getScore(pattern)))
             {
-                if(seqan::length(seqan::infix(finder_tag4seed)) == (options.seed_end - options.seed_start + 1) ) // With this condition we select seeds that have only mismatches, if we want indels we should remove this condition
+                if(seqan2::length(seqan2::infix(finder_tag4seed)) == (options.seed_end - options.seed_start + 1) ) // With this condition we select seeds that have only mismatches, if we want indels we should remove this condition
                 {
                     //debug_stream << "SEED: {" << options.seed_start << ',' << options.seed_end << "]\t" << seeds[j].seq;
                     //debug_stream << "\tTAG: [" << seqan::beginPosition(finder_tag4seed) << ',' << seqan::endPosition(finder_tag4seed)
@@ -609,8 +609,8 @@ void scan_mir(t_mir_matched_v & mir_tag_out, t_tag_cell & tag, t_seed_v & seeds,
                             mirna_ok = true;
                         if(mirna_ok) {*/
                             ungapped_extension(mir_tag_out, tag, seeds[j].mir_seqs[k],
-                                               seqan::beginPosition(finder_tag4seed),
-                                               seqan::endPosition(finder_tag4seed), seqan::getScore(pattern), org_ids_m,
+                                               seqan2::beginPosition(finder_tag4seed),
+                                               seqan2::endPosition(finder_tag4seed), seqan2::getScore(pattern), org_ids_m,
                                                options);
                         //}
                     }
