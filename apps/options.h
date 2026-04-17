@@ -218,9 +218,9 @@ void setup_argument_parser(argument_parser & parser, options & options)
     parser.add_section("Performance Options");
     parser.add_option(options.time_limit, 'L' /*"tl"*/, "time-limit", "Time limit for the program.");
 #ifdef _OPENMP
-    parser.add_option(options.threads, 'M' /*"t"*/, "threads", "Specify the number of threads to use.",  option_spec::standard, arithmetic_range_validator{1, (double)std::thread::hardware_concurrency() + 1});
+    parser.add_option(options.threads, 'M' /*"t"*/, "threads", "Specify the number of threads to use.",  option_spec::standard, arithmetic_range_validator{1u, std::thread::hardware_concurrency() + 1});
 #else
-    parser.add_option(options.threads, 'M' /*"t"*/, "threads", "Specify the number of threads to use.",  option_spec::standard, arithmetic_range_validator{1, 1});
+    parser.add_option(options.threads, 'M' /*"t"*/, "threads", "Specify the number of threads to use.",  option_spec::standard, arithmetic_range_validator{1u, 1u});
 #endif
 }
 
