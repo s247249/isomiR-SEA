@@ -1080,7 +1080,7 @@ void load_tags(t_tag & tag, options const & options)
         t_tag_cell tag_cell;
 
         boost::split(list_of_words, line, is_space);
-        tag_cell.seq = list_of_words[0] | views::char_to<rna15> | ranges::to<std::vector>;
+        tag_cell.seq = list_of_words[0] | views::char_to<rna15> | seqan3::ranges::to<std::vector>;
         if(list_of_words.size() > 2)
         {
             tag_cell.qual = list_of_words[1];
