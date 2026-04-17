@@ -174,7 +174,7 @@ void setup_argument_parser(argument_parser & parser, options & options)
     //parser.add_option(options.un_left, 'i' /*"ul"*/, "un-left", "type used for the global-unconstrained alignment AlignConfig TLeft.");
     //parser.add_option(options.un_right, 'l' /*"ur"*/, "un-right", "type used for the global-unconstrained alignment AlignConfig TRight.");
     //parser.add_option(options.un_down, 'm' /*"ud"*/, "un-down", "type used for the global-unconstrained alignment AlignConfig TDown.");
-    parser.add_option(options.specie_codes, 'n' /*"sc"*/, "specie-codes", "Specie codes to be evaluated during the alignment at the same time.", option_spec::REQUIRED);
+    parser.add_option(options.specie_codes, 'n' /*"sc"*/, "specie-codes", "Specie codes to be evaluated during the alignment at the same time.", option_spec::required);
     parser.add_option(options.min_size_aln_stp1, 'o' /*"msas"*/, "min-size-aln-stp1", "Minimum size of ungapped alignment, starting from the seed, extending the alignment.");
     parser.add_option(options.min_align_score, 'p' /*"mas"*/, "min-align-score", "Minimum alignment score for considering a tag expression of a miR.");
     parser.add_option(options.seed_start, 'q' /*"ss"*/, "seed-start", "Start position of the seed.");
@@ -186,7 +186,7 @@ void setup_argument_parser(argument_parser & parser, options & options)
     parser.add_option(options.mismatches_in_seed, 'z' /*"mis"*/, "mismatches-in-seed", "Number of mismatches allowed between miRNA seed and tags.");
 
     parser.add_section("Input Options");
-    parser.add_option(options.in_file_tags, '1' /*"ift"*/, "in-file-tags", "Name of input file storing Tags (full path or searched in the current folder).", option_spec::REQUIRED);
+    parser.add_option(options.in_file_tags, '1' /*"ift"*/, "in-file-tags", "Name of input file storing Tags (full path or searched in the current folder).", option_spec::required);
     parser.add_flag(options.mirtrace_input, 'm' /*"mt"*/, "mirtrace-input", "If set, the input file is in miRTrace format (4 columns: tag_id, sequence, count, and miRNA annotation).");
     parser.add_option(options.in_file_mature, '2' /*"ifm"*/, "in-file-mature", "Name of input file storing mature/star miRs (if passed alone both mature/star are acquired and will be tryed to discriminate the type (full path or searched in the current folder).");
     parser.add_option(options.in_file_star, '3' /*"ifs"*/, "in-file-star", "Name of input file storing star miRs that if passed separately can be readed and included in the mature structure (full path or searched in the current folder) [OPTIONAL].");
@@ -218,9 +218,9 @@ void setup_argument_parser(argument_parser & parser, options & options)
     parser.add_section("Performance Options");
     parser.add_option(options.time_limit, 'L' /*"tl"*/, "time-limit", "Time limit for the program.");
 #ifdef _OPENMP
-    parser.add_option(options.threads, 'M' /*"t"*/, "threads", "Specify the number of threads to use.",  option_spec::DEFAULT, arithmetic_range_validator{1, (double)std::thread::hardware_concurrency() + 1});
+    parser.add_option(options.threads, 'M' /*"t"*/, "threads", "Specify the number of threads to use.",  option_spec::standard, arithmetic_range_validator{1, (double)std::thread::hardware_concurrency() + 1});
 #else
-    parser.add_option(options.threads, 'M' /*"t"*/, "threads", "Specify the number of threads to use.",  option_spec::DEFAULT, arithmetic_range_validator{1, 1});
+    parser.add_option(options.threads, 'M' /*"t"*/, "threads", "Specify the number of threads to use.",  option_spec::standard, arithmetic_range_validator{1, 1});
 #endif
 }
 
