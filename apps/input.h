@@ -168,7 +168,11 @@ void acquire_from_gff(std::vector<gff_record> & gff_records_mir, std::vector<gff
                       std::string const & filename, options const & options)
 {
     std::ifstream in(filename);
-    auto stream_view = view::istreambuf(in);
+    //auto stream_view = view::istreambuf(in);
+    auto stream_view = std::ranges::subrange(
+        std::istreambuf_iterator<char>(in),
+        std::istreambuf_iterator<char>()
+    );
     gff_record record;
     auto it = stream_view.begin();
     auto end = stream_view.end();
